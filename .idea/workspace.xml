@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="14ea8ff4-b752-4fb8-b352-ce58a1291037" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/awesome-webapp.iml" afterPath="$PROJECT_DIR$/.idea/awesome-webapp.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="14ea8ff4-b752-4fb8-b352-ce58a1291037" name="Default" comment="首页">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="awesome-webapp.iws" />
@@ -26,8 +24,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="13" column="54" lean-forward="true" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
+            <state relative-caret-position="200">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -279,6 +277,14 @@
       <option name="presentableId" value="Default" />
       <updated>1503678584990</updated>
     </task>
+    <task id="LOCAL-00001" summary="首页">
+      <created>1503901788268</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1503901788268</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -316,6 +322,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="首页" />
+    <option name="LAST_COMMIT_MESSAGE" value="首页" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -324,8 +334,8 @@
     <entry file="file://$PROJECT_DIR$/www/static/__init__.py" />
     <entry file="file://$PROJECT_DIR$/www/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="54" lean-forward="true" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
+        <state relative-caret-position="200">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
