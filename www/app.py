@@ -25,6 +25,13 @@ def init_jinja2(app, **kw):
             env.filters[name] = f
     app['__templating__'] = env
 
+async def logger_factory(app, handler):
+    async def logger(request):
+        logging.info('Request: %s %s' % (request.method, request.path))
+        # await asyncio.sleep(0.3)
+        return (await handler(request))
+    return logger
+
 def index(request):
     return web.Response(body=b'<h1>Awesome</h1>',content_type='text/html')
 
