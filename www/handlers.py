@@ -4,6 +4,7 @@ from www.coroweb import get
 from www.models import User, Blog
 
 
+
 @get('/')
 def index(request):
     summary = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
