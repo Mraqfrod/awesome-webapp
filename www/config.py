@@ -1,6 +1,7 @@
 
 
 import www.config_default
+from www import config_default
 
 
 class Dict(dict):
