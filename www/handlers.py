@@ -3,17 +3,31 @@ import json
 import logging
 import time
 
+import re
 from aiohttp import web
 
-from www.apis import APIValueError
+from www.apis import APIValueError, APIError, APIPermissionError
 from www.config import configs
 from www.coroweb import get, post
-from www.models import User, Blog
-
-
+from www.models import User, Blog, next_id
 
 COOKIE_NAME = 'awesession'
 _COOKIE_KEY = configs.session.secret
+
+
+def check_admin(request):
+    if request.__user__ is None or not request.__user__.admin:
+        raise APIPermissionError()
+
+def get_page_index(page_str):
+    p = 1
+    try:
+        p = int(page_str)
+    except ValueError as e:
+        pass
+    if p < 1:
+        p = 1
+    return p
 
 def user2cookie(user, max_age):
     '''
@@ -134,3 +148,22 @@ def api_register_user(*, email, name, passwd):
     r.content_type = 'application/json'
     r.body = json.dumps(user, ensure_ascii=False).encode('utf-8')
     return r
+
+
+@get('/api/blogs/{id}')
+def api_get_blog(*, id):
+    blog = yield from Blog.find(id)
+    return blog
+
+@post('/api/blogs')
+def api_create_blog(request, *, name, summary, content):
+    check_admin(request)
+    if not name or not name.strip():
+        raise APIValueError('name', 'name cannot be empty.')
+    if not summary or not summary.strip():
+        raise APIValueError('summary', 'summary cannot be empty.')
+    if not content or not content.strip():
+        raise APIValueError('content', 'content cannot be empty.')
+    blog = Blog(user_id=request.__user__.id, user_name=request.__user__.name, user_image=request.__user__.image, name=name.strip(), summary=summary.strip(), content=content.strip())
+    yield from blog.save()
+    return blog
