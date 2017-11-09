@@ -279,6 +279,7 @@ def api_register_user(*, email, name, passwd):
     r.body = json.dumps(user, ensure_ascii=False).encode('utf-8')
     return r
 
+
 @get('/api/blogs')
 def api_blogs(*, page='1'):
     page_index = get_page_index(page)
@@ -288,6 +289,7 @@ def api_blogs(*, page='1'):
         return dict(page=p, blogs=())
     blogs = yield from Blog.findAll(orderBy='created_at desc', limit=(p.offset, p.limit))
     return dict(page=p, blogs=blogs)
+
 
 @get('/api/blogs/{id}')
 def api_get_blog(*, id):
@@ -308,3 +310,28 @@ def api_create_blog(request, *, name, summary, content):
                 name=name.strip(), summary=summary.strip(), content=content.strip())
     yield from blog.save()
     return blog
+
+
+@post('/api/blogs/{id}')
+def api_update_blog(id, request, *, name, summary, content):
+    check_admin(request)
+    blog = yield from Blog.find(id)
+    if not name or not name.strip():
+        raise APIValueError('name', 'name cannot be empty.')
+    if not summary or not summary.strip():
+        raise APIValueError('summary', 'summary cannot be empty.')
+    if not content or not content.strip():
+        raise APIValueError('content', 'content cannot be empty.')
+    blog.name = name.strip()
+    blog.summary = summary.strip()
+    blog.content = content.strip()
+    yield from blog.update()
+    return blog
+
+
+@post('/api/blogs/{id}/delete')
+def api_delete_blog(request, *, id):
+    check_admin(request)
+    blog = yield from Blog.find(id)
+    yield from blog.remove()
+    return dict(id=id)
